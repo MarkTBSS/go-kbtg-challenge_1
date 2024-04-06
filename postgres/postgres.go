@@ -3,8 +3,9 @@ package postgres
 import (
 	"database/sql"
 	"log"
+	"os"
 
-	"github.com/MarkTBSS/go-kbtg-challenge_1/configs"
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
@@ -13,7 +14,11 @@ type Postgres struct {
 }
 
 func New() (*Postgres, error) {
-	database, err := sql.Open("postgres", configs.DatabaseURL())
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal(err)
+	}
+	database, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	if err != nil {
 		log.Fatal(err)
 		return nil, err

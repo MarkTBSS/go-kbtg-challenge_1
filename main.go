@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/MarkTBSS/go-kbtg-challenge_1/configs"
 	"github.com/MarkTBSS/go-kbtg-challenge_1/postgres"
 	"github.com/MarkTBSS/go-kbtg-challenge_1/wallet"
 	"github.com/labstack/echo/v4"
@@ -15,7 +14,6 @@ import (
 // @description	Sophisticated Wallet API
 // @host			localhost:1323
 func main() {
-	configs.LoadConfig()
 	databaseInstance, err := postgres.New()
 	if err != nil {
 		panic(err)
